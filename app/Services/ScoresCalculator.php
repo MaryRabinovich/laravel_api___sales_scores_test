@@ -2,15 +2,14 @@
 
 namespace App\Services;
 
+use App\Models\Sales;
+
 class ScoresCalculator
 {
     public function getScores(array $items): int
     {
-        // скидочные артикулы должны бы браться из БД
-        // но в задании вроде хардкод
-        $inSales = [
-            '3005-13' => 3
-        ];
+        $inSales = Sales::select(['article', 'points'])
+            ->get()->pluck('points', 'article')->all();
 
         $scores = 0;
 
