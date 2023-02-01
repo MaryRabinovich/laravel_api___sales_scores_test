@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+// use App\Models\Order;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -13,8 +14,8 @@ class ApiTest extends TestCase
     protected string $url = '/api/insales/scores/update';
 
     protected array $data = [
-        'id' => 12345,
         'client_id' => 1,
+        'id' => 12345,
         'items' => [
             [
                 'article' => '3005-12',
