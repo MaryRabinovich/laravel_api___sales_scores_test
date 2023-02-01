@@ -66,4 +66,30 @@ class ApiTest extends TestCase
                 ->assertStatus(302);
         }
     }
+
+    /** @test */
+    public function it_returns_correct_response_when_order_has_saled_items()
+    {
+        $expected = [
+            'order_id' => 12345,
+            'client_id' => 1,
+            'scores' => 9
+        ];
+
+        $this->post($this->url, $this->data)->assertJson($expected);
+    }
+
+    /** @test */
+    public function it_returns_correct_response_when_order_does_not_have_saled_items()
+    {
+        $this->data['items'][1]['article'] = 'not saled';
+        
+        $expected = [
+            'order_id' => 12345,
+            'client_id' => 1,
+            'scores' => 0
+        ];
+
+        $this->post($this->url, $this->data)->assertJson($expected);
+    }
 }
